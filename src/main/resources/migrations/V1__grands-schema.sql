@@ -2,12 +2,12 @@ drop table if exists person;
 drop table if exists household;
 
 create table household (
-    id int not null primary key,
+    id int not null AUTO_INCREMENT primary key,
     housing_type varchar(11) not null
 );
 
 create table person (
-    id int not null primary key,
+    id int not null AUTO_INCREMENT primary key,
     name varchar(30) not null,
     gender char(1) not null,
     marital_status varchar(7) not null,
