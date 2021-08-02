@@ -1,7 +1,5 @@
 package api.households;
 
-import api.households.data.HouseholdRepository;
-import api.households.data.PersonRepository;
 import api.households.data.models.Household;
 import api.households.data.models.Person;
 import io.micronaut.http.HttpStatus;
@@ -13,42 +11,42 @@ import javax.inject.Inject;
 @Controller("/households")
 public class HouseholdController {
     @Inject
-    HouseholdRepository householdRepository;
+    HouseholdService householdService;
 
     @Inject
-    PersonRepository personRepository;
+    FamilyMemberService familyMemberService;
 
     @Post
     public Household createHousehold(@Body Household household) {
-        return householdRepository.save(household);
+        return householdService.createHousehold(household);
     }
 
     @Get("/{id}")
     public Household getHousehold(Integer id) {
-        Household household = householdRepository.find(id);
-        if (household == null) {
-            throw new HttpStatusException(HttpStatus.BAD_REQUEST, "No household of id " + id.toString() + " found");
-        }
-
-        return householdRepository.find(id);
+        return householdService.getHousehold(id);
     }
 
     @Get
-    public Iterable<Household> getHouseholds() {
-        return householdRepository.findAll();
+    public Iterable<Household> getAllHouseholds() {
+        return householdService.getAllHouseholds();
     }
 
     @Post("/{householdId}/family-members")
     public Person addFamilyMember(Integer householdId, @Body Person person) {
-        person.setHouseholdId(householdId);
-        return personRepository.save(person);
+        if (householdService.getHousehold(householdId) == null) {
+            throw new HttpStatusException(HttpStatus.BAD_REQUEST, "Household ID does not exist");
+        }
+
+        return familyMemberService.addFamilyMember(householdId, person);
     }
 
     @Delete("/{id}")
     public void deleteHousehold(Integer id) {
-        if (householdRepository.find(id) == null) {
-            throw new HttpStatusException(HttpStatus.BAD_REQUEST, "No household of id " + id.toString() + " found");
-        }
-        householdRepository.deleteById(id);
+        householdService.deleteHousehold(id);
+    }
+
+    @Delete("/{householdId}/family-members/{id}")
+    public void deleteFamilyMember(Integer householdId, Integer id) {
+        familyMemberService.deleteFamilyMember(householdId, id);
     }
 }
