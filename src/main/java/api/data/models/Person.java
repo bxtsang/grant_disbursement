@@ -12,9 +12,9 @@ public class Person {
 
     private String name;
 
-    private char gender;
+    private Gender gender;
 
-    private String marital_status;
+    private Boolean marital_status;
 
     @OneToOne()
     @JoinColumn(name = "spouse_id", referencedColumnName = "id")
@@ -46,19 +46,19 @@ public class Person {
         this.name = name;
     }
 
-    public char getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
-    public String getMarital_status() {
+    public Boolean getMarital_status() {
         return marital_status;
     }
 
-    public void setMarital_status(String marital_status) {
+    public void setMarital_status(Boolean marital_status) {
         this.marital_status = marital_status;
     }
 
