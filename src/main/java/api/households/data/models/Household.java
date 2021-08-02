@@ -1,4 +1,4 @@
-package api.data.models;
+package api.households.data.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -15,7 +15,7 @@ public class Household {
     @Enumerated(EnumType.STRING)
     private HousingType housingType;
 
-    @OneToMany(mappedBy = "householdId", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "householdId", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JsonInclude(JsonInclude.Include.ALWAYS)
     private List<Person> familyMembers = new ArrayList<>();
 

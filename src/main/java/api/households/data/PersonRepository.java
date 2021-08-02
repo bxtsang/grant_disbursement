@@ -1,6 +1,6 @@
-package api.data;
+package api.households.data;
 
-import api.data.models.Person;
+import api.households.data.models.Person;
 import io.micronaut.data.annotation.Repository;
 import io.micronaut.data.repository.CrudRepository;
 

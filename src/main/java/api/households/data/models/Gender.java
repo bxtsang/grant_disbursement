@@ -1,4 +1,4 @@
-package api.data.models;
+package api.households.data.models;
 
 public enum Gender {
     M,

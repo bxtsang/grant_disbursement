@@ -1,4 +1,4 @@
-package api.data.models;
+package api.households.data.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;

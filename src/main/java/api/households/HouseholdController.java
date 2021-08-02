@@ -1,9 +1,9 @@
-package api.controllers;
+package api.households;
 
-import api.data.HouseholdRepository;
-import api.data.PersonRepository;
-import api.data.models.Household;
-import api.data.models.Person;
+import api.households.data.HouseholdRepository;
+import api.households.data.PersonRepository;
+import api.households.data.models.Household;
+import api.households.data.models.Person;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.exceptions.HttpStatusException;
