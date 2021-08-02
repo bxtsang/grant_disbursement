@@ -43,4 +43,12 @@ public class HouseholdController {
         person.setHouseholdId(householdId);
         return personRepository.save(person);
     }
+
+    @Delete("/{id}")
+    public void deleteHousehold(Integer id) {
+        if (householdRepository.find(id) == null) {
+            throw new HttpStatusException(HttpStatus.BAD_REQUEST, "No household of id " + id.toString() + " found");
+        }
+        householdRepository.deleteById(id);
+    }
 }
