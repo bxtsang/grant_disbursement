@@ -1,6 +1,7 @@
 plugins {
     id("com.github.johnrengelman.shadow") version "7.0.0"
     id("io.micronaut.application") version "1.5.4"
+    id ("org.flywaydb.flyway") version "7.12.0"
 }
 
 version = "0.1"
@@ -32,6 +33,7 @@ dependencies {
     testImplementation("org.testcontainers:mysql")
     testImplementation("org.testcontainers:testcontainers")
     implementation("io.micronaut:micronaut-validation")
+    implementation("io.micronaut.flyway:micronaut-flyway")
 
 }
 
@@ -43,6 +45,3 @@ java {
     sourceCompatibility = JavaVersion.toVersion("11")
     targetCompatibility = JavaVersion.toVersion("11")
 }
-
-
-
