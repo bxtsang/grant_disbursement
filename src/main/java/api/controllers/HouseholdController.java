@@ -16,6 +16,9 @@ public class HouseholdController {
     @Inject
     HouseholdRepository householdRepository;
 
+    @Inject
+    PersonRepository personRepository;
+
     @Post
     public Household createHousehold(@Body Household household) {
         return householdRepository.save(household);
@@ -29,5 +32,11 @@ public class HouseholdController {
     @Get
     public Iterable<Household> getHouseholds() {
         return householdRepository.findAll();
+    }
+
+    @Post("/{householdId}/family-members")
+    public Person addFamilyMember(Integer householdId, @Body Person person) {
+        person.setHouseholdId(householdId);
+        return personRepository.save(person);
     }
 }

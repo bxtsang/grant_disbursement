@@ -7,14 +7,14 @@ import java.time.LocalDate;
 
 public class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
 
     private Gender gender;
 
-    private Boolean marital_status;
+    private Boolean maritalStatus;
 
     @OneToOne()
     @JoinColumn(name = "spouse_id", referencedColumnName = "id")
@@ -54,12 +54,13 @@ public class Person {
         this.gender = gender;
     }
 
-    public Boolean getMarital_status() {
-        return marital_status;
+    @Column(name = "marital_status", columnDefinition = "bool")
+    public Boolean getMaritalStatus() {
+        return maritalStatus;
     }
 
-    public void setMarital_status(Boolean marital_status) {
-        this.marital_status = marital_status;
+    public void setMaritalStatus(Boolean marital_status) {
+        this.maritalStatus = marital_status;
     }
 
     public Person getSpouse() {
