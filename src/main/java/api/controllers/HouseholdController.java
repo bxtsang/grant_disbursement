@@ -1,7 +1,9 @@
 package api.controllers;
 
 import api.data.HouseholdRepository;
+import api.data.PersonRepository;
 import api.data.models.Household;
+import api.data.models.Person;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
@@ -9,7 +11,7 @@ import io.micronaut.http.annotation.Post;
 
 import javax.inject.Inject;
 
-@Controller("/household")
+@Controller("/households")
 public class HouseholdController {
     @Inject
     HouseholdRepository householdRepository;
@@ -22,5 +24,10 @@ public class HouseholdController {
     @Get("/{id}")
     public Household getHousehold(Integer id) {
         return householdRepository.find(id);
+    }
+
+    @Get
+    public Iterable<Household> getHouseholds() {
+        return householdRepository.findAll();
     }
 }
