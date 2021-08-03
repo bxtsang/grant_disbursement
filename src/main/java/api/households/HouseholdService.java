@@ -130,7 +130,7 @@ public class HouseholdService {
             if (spouse == null) {
                 return true;
             } else {
-                if (spouse.getHouseholdId() == household.getId()) {
+                if (spouse.getHouseholdId().equals(household.getId())) {
                     return true;
                 }
             }
