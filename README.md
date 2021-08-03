@@ -82,6 +82,8 @@ A RESTful web service to manage households and people, and to search for househo
 
 ## Local Setup
 
+*Pre-requisites: Java installed (compatible with Java 11) with JAVA_HOME environment variable set*
+
 1. Use any MySQL 8.0 server to create a new database
 2. In the created database, create a new schema
 3. Set the following environment variables:
