@@ -1,7 +1,9 @@
 package api.households;
 
 import api.households.data.PersonRepository;
+import api.households.data.PersonRequestHandler;
 import api.households.data.models.Person;
+import api.households.data.models.PersonRequest;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.exceptions.HttpStatusException;
@@ -14,9 +16,12 @@ public class FamilyMemberService {
     @Inject
     PersonRepository personRepository;
 
-    public Person addFamilyMember(Integer householdId, @Body Person person) {
+    @Inject
+    PersonRequestHandler personRequestHandler;
+
+    public Person addFamilyMember(Integer householdId, PersonRequest person) {
         person.setHouseholdId(householdId);
-        return personRepository.save(person);
+        return personRepository.save(personRequestHandler.convertPersonRequest(person));
     }
 
     public void deleteFamilyMember(Integer householdId, Integer id) {

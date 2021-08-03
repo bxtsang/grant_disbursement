@@ -2,6 +2,7 @@ package api.households;
 
 import api.households.data.models.Household;
 import api.households.data.models.Person;
+import api.households.data.models.PersonRequest;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.exceptions.HttpStatusException;
@@ -32,7 +33,7 @@ public class HouseholdController {
     }
 
     @Post("/{householdId}/family-members")
-    public Person addFamilyMember(Integer householdId, @Body Person person) {
+    public Person addFamilyMember(Integer householdId, @Body PersonRequest person) {
         if (householdService.getHousehold(householdId) == null) {
             throw new HttpStatusException(HttpStatus.BAD_REQUEST, "Household ID does not exist");
         }
