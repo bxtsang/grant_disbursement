@@ -24,6 +24,9 @@ public class PersonRequestHandler {
         person.setHouseholdId(personRequest.getHouseholdId());
 
         if (!personRequest.getMaritalStatus()) {
+            if (personRequest.getSpouse() != null) {
+                throw new HttpStatusException(HttpStatus.BAD_REQUEST, "Marital status true but no spouse name or spouse ID provided");
+            }
             return person;
         }
 

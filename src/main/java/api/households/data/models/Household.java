@@ -2,6 +2,8 @@ package api.households.data.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.micronaut.http.HttpStatus;
+import io.micronaut.http.exceptions.HttpStatusException;
 import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
@@ -54,5 +56,11 @@ public class Household {
 
     public void setTotalIncome(Integer totalIncome) {
         this.totalIncome = totalIncome;
+    }
+
+    public void checkValid() {
+        if (this.housingType == null) {
+            throw new HttpStatusException(HttpStatus.BAD_REQUEST, "No housing type provided");
+        }
     }
 }

@@ -20,6 +20,7 @@ public class HouseholdController {
 
     @Post
     public Household createHousehold(@Body Household household) {
+        household.checkValid();
         return householdService.createHousehold(household);
     }
 
@@ -35,9 +36,7 @@ public class HouseholdController {
 
     @Post("/{householdId}/family-members")
     public Person addFamilyMember(Integer householdId, @Body PersonRequest person) {
-        if (householdService.getHousehold(householdId) == null) {
-            throw new HttpStatusException(HttpStatus.BAD_REQUEST, "Household ID does not exist");
-        }
+        householdService.getHousehold(householdId);
 
         return familyMemberService.addFamilyMember(householdId, person);
     }
@@ -49,6 +48,7 @@ public class HouseholdController {
 
     @Delete("/{householdId}/family-members/{id}")
     public void deleteFamilyMember(Integer householdId, Integer id) {
+        householdService.getHousehold(householdId);
         familyMemberService.deleteFamilyMember(householdId, id);
     }
 
