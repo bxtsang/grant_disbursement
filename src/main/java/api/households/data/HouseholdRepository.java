@@ -2,6 +2,8 @@ package api.households.data;
 
 import api.households.data.models.Household;
 import io.micronaut.context.annotation.Executable;
+import io.micronaut.data.annotation.Id;
+import io.micronaut.data.annotation.Query;
 import io.micronaut.data.annotation.Repository;
 import io.micronaut.data.repository.CrudRepository;
 
@@ -9,4 +11,7 @@ import io.micronaut.data.repository.CrudRepository;
 public interface HouseholdRepository extends CrudRepository<Household, Integer> {
     @Executable
     public Household find(Integer id);
+
+    @Query("Update Household as h set h.totalIncome = h.totalIncome + :newIncome")
+    public Household updateTotalIncome(@Id Integer id, Integer newIncome);
 }

@@ -1,5 +1,6 @@
 package api.households;
 
+import api.households.data.HouseholdRepository;
 import api.households.data.PersonRepository;
 import api.households.data.PersonRequestHandler;
 import api.households.data.models.Person;
@@ -17,11 +18,17 @@ public class FamilyMemberService {
     PersonRepository personRepository;
 
     @Inject
+    HouseholdRepository householdRepository;
+
+    @Inject
     PersonRequestHandler personRequestHandler;
 
     public Person addFamilyMember(Integer householdId, PersonRequest person) {
         person.setHouseholdId(householdId);
-        return personRepository.save(personRequestHandler.convertPersonRequest(person));
+        Person newPerson = personRepository.save(personRequestHandler.convertPersonRequest(person));
+        householdRepository.updateTotalIncome(householdId, newPerson.getAnnualIncome());
+
+        return newPerson;
     }
 
     public void deleteFamilyMember(Integer householdId, Integer id) {
@@ -36,5 +43,6 @@ public class FamilyMemberService {
         }
 
         personRepository.deleteById(id);
+        householdRepository.updateTotalIncome(householdId, -person.getAnnualIncome());
     }
 }

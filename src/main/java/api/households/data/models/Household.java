@@ -1,6 +1,8 @@
 package api.households.data.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,6 +20,9 @@ public class Household {
     @OneToMany(mappedBy = "householdId", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JsonInclude(JsonInclude.Include.ALWAYS)
     private List<Person> familyMembers = new ArrayList<>();
+
+    @JsonIgnore
+    private int totalIncome;
 
     public Integer getId() {
         return id;
@@ -41,5 +46,13 @@ public class Household {
 
     public void setFamilyMembers(List<Person> familyMembers) {
         this.familyMembers = familyMembers;
+    }
+
+    public Integer getTotalIncome() {
+        return totalIncome;
+    }
+
+    public void setTotalIncome(Integer totalIncome) {
+        this.totalIncome = totalIncome;
     }
 }

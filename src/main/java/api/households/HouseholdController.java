@@ -3,6 +3,7 @@ package api.households;
 import api.households.data.models.Household;
 import api.households.data.models.Person;
 import api.households.data.models.PersonRequest;
+import io.micronaut.core.annotation.Nullable;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.exceptions.HttpStatusException;
@@ -49,5 +50,15 @@ public class HouseholdController {
     @Delete("/{householdId}/family-members/{id}")
     public void deleteFamilyMember(Integer householdId, Integer id) {
         familyMemberService.deleteFamilyMember(householdId, id);
+    }
+
+    @Get("/search")
+    public void searchForHouseholds(
+            @Nullable @QueryValue Integer totalIncome,
+            @Nullable @QueryValue Integer childrenAge,
+            @Nullable @QueryValue Integer elderAge,
+            @Nullable @QueryValue Boolean hasCouple
+    ) {
+
     }
 }

@@ -41,4 +41,8 @@ public class HouseholdService {
         }
         householdRepository.deleteById(id);
     }
+
+//    public Iterable<Household> searchForHouseholds(Integer totalIncome, Integer childrenAge, Integer elderAge, Boolean hasCouple) {
+//        Iterable<Household> households =
+//    }
 }
