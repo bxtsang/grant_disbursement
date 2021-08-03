@@ -53,12 +53,12 @@ public class HouseholdController {
     }
 
     @Get("/search")
-    public void searchForHouseholds(
+    public Iterable<Household> searchForHouseholds(
             @Nullable @QueryValue Integer totalIncome,
             @Nullable @QueryValue Integer childrenAge,
             @Nullable @QueryValue Integer elderAge,
             @Nullable @QueryValue Boolean hasCouple
     ) {
-
+        return householdService.searchForHouseholds(totalIncome, childrenAge, elderAge, hasCouple);
     }
 }
