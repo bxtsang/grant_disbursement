@@ -77,6 +77,7 @@ A RESTful web service to manage households and people, and to search for househo
 **Language**: Java 11 <br>
 **Database**: MySQL 8.0 on [Amazon RDS](https://aws.amazon.com/rds/) <br>
 **Database Migration Plugin**: [Flyway](https://flywaydb.org/) <br>
+
 ---
 
 ## Local Setup
